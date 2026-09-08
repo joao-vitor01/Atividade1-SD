@@ -1,0 +1,48 @@
+syntax = "proto3";//versão do Protocol Buffers
+
+//Estrutura de dados principal
+message Tarefa{
+    string id = 1;
+    string titulo = 2;
+    string descricao = 3;
+    string status = 4;
+    string data_limite = 5;
+    repeated string responsaveis = 6;
+}
+
+//Requisiçao de CriarTarefa, o cliente não manda o ID - o servidor vai gerar
+message CriarTarefaRequest{
+    string titulo = 1;
+    string descricao = 2;
+    string status = 3;
+    string data_limite = 4;
+    repeated string responsaveis = 5;
+}
+
+//Retorna uma lista com tarefas
+message ListaTarefasResponse{
+    repeated Tarefa tarefas = 1;
+}
+
+//Retorna o ID da tarefa
+message TarefaIdRequest{
+    string id = 1;
+}
+
+//Usado quando a requisição ou resposta não precisa enviar dados
+message Empty{}
+
+service GerenciadorDeTarefas{
+
+    //Criar uma tarefa no servidor
+    rpc CriarTarefa(CriarTarefaRequest) returns (Tarefa){}
+    
+    //Lista as tarefas no servidor
+    rpc ListarTarefas(Empty) returns (ListaTarefasResponse){}
+
+    //Atualiza as tarefas no servidor
+    rpc AtualizarTarefa(Tarefa) returns (Tarefa){}
+
+    //Deleta uma tarefa no servidor
+    rpc DeletarTarefa(TarefaIdRequest) returns (Empty){}
+}
