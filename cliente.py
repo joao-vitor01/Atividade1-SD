@@ -9,7 +9,7 @@ import tarefas_pb2_grpc
 def executar_cliente():
     # ATENÇÃO PARA O VIRTUALBOX: 
     # Quando for testar com a máquina virtual, troque 'localhost' pelo IP do VirtualBox (ex: '192.168.56.10')
-    endereco_servidor = 'localhost:50051'
+    endereco_servidor = 'servidor:50051'
     
     print(f"Conectando ao servidor em {endereco_servidor}...")
     

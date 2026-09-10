@@ -1,0 +1,30 @@
+
+services:
+  servidor:
+    build: .
+    command: python servidor.py
+    tty: true
+    volumes:
+      - ./banco_de_tarefas:/app/banco_de_tarefas
+    networks:
+      - rede_tarefas
+
+  cliente_1:
+    build: .
+    command: python cliente.py
+    depends_on:
+      - servidor
+    networks:
+      - rede_tarefas
+
+  cliente_2:
+    build: .
+    command: python cliente.py 
+    depends_on:
+      - servidor
+    networks:
+      - rede_tarefas
+
+networks:
+  rede_tarefas:
+    driver: bridge
