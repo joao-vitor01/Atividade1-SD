@@ -1,0 +1,6 @@
+ID: 3925ff94-b674-4114-9f44-626eb6ed9e3a
+Titulo: Estudar Sistemas Distribuidos
+Descricao: Revisar os conceitos de gRPC e Protobuf para a apresentacao
+Status: Em andamento
+Data Limite: Quinta-feira
+Responsaveis: Seu Nome, Joao Vitor
