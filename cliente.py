@@ -7,9 +7,10 @@ import tarefas_pb2
 import tarefas_pb2_grpc
 
 def executar_cliente():
-    # ATENÇÃO PARA O VIRTUALBOX: 
-    # Quando for testar com a máquina virtual, troque 'localhost' pelo IP do VirtualBox (ex: '192.168.56.10')
+    
+    # Quando for testar com a máquina virtual, troque localhost pelo IP do VirtualBox
     endereco_servidor = 'servidor:50051'
+
     
     print(f"Conectando ao servidor em {endereco_servidor}...")
     
@@ -37,11 +38,16 @@ def executar_cliente():
                 responsaveis = [r.strip() for r in responsaveis]
                 
                 pedido = tarefas_pb2.CriarTarefaRequest(
-                    titulo=titulo, descricao=descricao, status=status,
-                    data_limite=data_limite, responsaveis=responsaveis
+                    titulo=titulo,
+                    descricao=descricao, 
+                    status=status,
+                    data_limite=data_limite, 
+                    responsaveis=responsaveis
                 )
                 resposta = stub.CriarTarefa(pedido)
                 print(f"\n[SUCESSO] Tarefa criada! ID: {resposta.id}")
+
+
                 
             elif opcao == "2":
                 print("\nBuscando tarefas no servidor...")
@@ -54,6 +60,9 @@ def executar_cliente():
                     print(f"Data Limite: {t.data_limite}")
                     print(f"Responsáveis: {', '.join(t.responsaveis)}")
                 print(f"----------------------------------")
+
+
+
                 
             elif opcao == "3":
                 id_tarefa = input("Digite o ID exato da tarefa que deseja atualizar: ")
@@ -70,6 +79,9 @@ def executar_cliente():
                 )
                 stub.AtualizarTarefa(pedido)
                 print("\n[SUCESSO] Tarefa atualizada!")
+
+
+
                 
             elif opcao == "4":
                 id_tarefa = input("Digite o ID da tarefa que deseja deletar: ")
